@@ -231,14 +231,12 @@ def query_tweets(query, limit=None, begindate=dt.date(2006, 3, 21), enddate=dt.d
     all_tweets = []
     try:
         pool = Pool(poolsize)
-        if(logging):
-		logger.info('queries: {}'.format(queries))
+        #logger.info('queries: {}'.format(queries))
         try:
             for new_tweets in pool.imap_unordered(partial(query_tweets_once, limit=limit_per_pool, lang=lang), queries):
                 all_tweets.extend(new_tweets)
-                if(logging):
-			logger.info('Got {} tweets ({} new).'.format(
-			    len(all_tweets), len(new_tweets)))
+                #logger.info('Got {} tweets ({} new).'.format(
+		 #   len(all_tweets), len(new_tweets)))
         except KeyboardInterrupt:
             logger.info('Program interrupted by user. Returning all tweets '
                          'gathered so far.')
